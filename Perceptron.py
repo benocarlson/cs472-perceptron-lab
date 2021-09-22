@@ -11,6 +11,7 @@ class Perceptron:
         self.weights = np.zeros([self.num_inputs + 1], dtype=float)  # Include bias weight
         self.init_weights = init_weights
         self.weights[:] = init_weights
+        self.epoch_history = []
 
     def fire(self, features):
         if len(features) + 1 != len(self.weights):
@@ -42,6 +43,7 @@ class Perceptron:
         count = 0
         old_score = 0.0
         total_epochs = 0
+        self.epoch_history.append([total_epochs, self.score(inputs, targets)])
         while count < epochs:
             count += 1
             total_epochs += 1
@@ -66,6 +68,7 @@ class Perceptron:
                 old_score = score
             if score >= old_score:
                 best_weights = self.get_weights()
+            self.epoch_history.append([total_epochs, score])
         self.weights = best_weights
         return total_epochs
 

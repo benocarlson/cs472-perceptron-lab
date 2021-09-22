@@ -53,6 +53,7 @@ def plot_lin_sep():
     plt.xlabel('Input 1')
     plt.ylabel('Input 2')
     plt.legend(loc='upper left')
+    plt.title('Linearly Separable Example')
     plt.show()
 
 def plot_non_lin_sep():
@@ -69,5 +70,8 @@ def plot_non_lin_sep():
     plt.xlabel('Input 1')
     plt.ylabel('Input 2')
     plt.legend(loc='upper right')
+    plt.title('Non-Linearly Separable Example')
     plt.show()
 
+plot_lin_sep()
+plot_non_lin_sep()

@@ -1,3 +1,4 @@
+% Linearly Separable Data Set
 @relation myLinSep
 @attribute a1 real
 @attribute a2 real

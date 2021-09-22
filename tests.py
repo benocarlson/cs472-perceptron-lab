@@ -12,4 +12,12 @@ def test_shuffle():
     print(str(array_array))
     print(str(array_shuffled))
 
-test_shuffle()
+
+def test_rand_split():
+    data = [[1, 1, 1], [1, 1, 0], [1, 0, 1], [1, 0, 0], [0, 1, 1], [0, 1, 0], [0, 0, 1], [0, 0, 0], [1, 1, 1], [0, 0, 0]]
+    targets = [1, 1, 1, 1, 0, 0, 0, 0, 1, 0]
+    train_d, train_l, test_d, test_l = rand_split_70_30(data, targets)
+    print("Training Data: ", train_d, train_l)
+    print("Test Data: ", test_d, test_l)
+
+test_rand_split()
