@@ -41,20 +41,23 @@ class Perceptron:
         best_weights = self.get_weights()
         count = 0
         old_score = 0.0
+        total_epochs = 0
         while count < epochs:
             count += 1
+            total_epochs += 1
             if do_shuffle:
-                epoch = shuffle(inputs)
+                epoch_inputs, epoch_targets = shuffle(inputs, targets)
             else:
-                epoch = inputs
-            for i in range(len(epoch)):
-                output = self.fire(epoch[i])
-                if output != targets[i]:
+                epoch_inputs = inputs
+                epoch_targets = targets
+            for i in range(len(epoch_inputs)):
+                output = self.fire(epoch_inputs[i])
+                if output != epoch_targets[i]:
                     for j in range(len(self.weights)):
                         if j == len(self.weights) - 1:
-                            weight_change = learning_rate * (targets[i] - output) * BIAS
+                            weight_change = learning_rate * (epoch_targets[i] - output) * BIAS
                         else:
-                            weight_change = learning_rate * (targets[i] - output) * epoch[i][j]
+                            weight_change = learning_rate * (epoch_targets[i] - output) * epoch_inputs[i][j]
                         self.weights[j] += weight_change
             score = self.score(inputs, targets)
             if old_score < score:
@@ -64,7 +67,7 @@ class Perceptron:
             if score >= old_score:
                 best_weights = self.get_weights()
         self.weights = best_weights
-        return old_score
+        return total_epochs
 
     def score(self, inputs, targets, alt_weights=None):
         # FIXME use alt_weights input for temporary weights

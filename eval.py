@@ -8,7 +8,7 @@ perceptron = Perceptron(mat.features_count, init_weights=0)
 
 
 perceptron.fit(data, labels, learning_rate=0.1, do_shuffle=False, deterministic=True, epochs=10)
-score = perceptron.score(data, labels, )
+score = perceptron.score(data, labels)
 print("Accuracy = [{:.2f}]".format(score))
 print("Final Weights =", perceptron.get_weights())
 
